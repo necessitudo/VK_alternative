@@ -1,34 +1,40 @@
-package ru.necessitudo.app.vk_alternative;
+package ru.necessitudo.app.vk_alternative.ui.activity;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Toast;
 
-import com.arellomobile.mvp.MvpAppCompatActivity;
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.vk.sdk.VKAccessToken;
 import com.vk.sdk.VKCallback;
 import com.vk.sdk.VKSdk;
 import com.vk.sdk.api.VKError;
-import com.vk.sdk.util.VKUtil;
 
-import java.util.Arrays;
-
+import ru.necessitudo.app.vk_alternative.CurrentUser;
+import ru.necessitudo.app.vk_alternative.MyApplication;
+import ru.necessitudo.app.vk_alternative.R;
+import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.view.MainView;
+import ru.necessitudo.app.vk_alternative.ui.fragment.BaseFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
 
-public class MainActivity extends MvpAppCompatActivity implements MainView {
+public class MainActivity extends BaseActivity implements MainView {
 
     @InjectPresenter
     MainPresenter mPresenter;
 
     @Override
+    protected int getMainContentLayout() {
+        return R.layout.activity_main;
+    }
+
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        MyApplication.getApplicationComponent().inject(this);
 
        mPresenter.checkAuth();
     }
@@ -61,7 +67,9 @@ public class MainActivity extends MvpAppCompatActivity implements MainView {
     @Override
     public void signedId() {
 
-        Toast.makeText(this, "Current user is: "+CurrentUser.getId(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, "Current user is: "+ CurrentUser.getId(), Toast.LENGTH_SHORT).show();
+        BaseFragment mNewsFeedFragment = new NewsFeedFragment();
 
+        setContent(new NewsFeedFragment());
     }
 }
