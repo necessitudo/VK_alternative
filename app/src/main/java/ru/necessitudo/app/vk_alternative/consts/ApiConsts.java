@@ -6,4 +6,7 @@ package ru.necessitudo.app.vk_alternative.consts;
 
 public class ApiConsts {
     public static final String[] DEFAULT_LOGIN_SCOPE = {};
+    public static final Double DEFAULT_VERSION = 5.67;
+    public static final int DEFAULT_COUNT = 10;
+
 }
