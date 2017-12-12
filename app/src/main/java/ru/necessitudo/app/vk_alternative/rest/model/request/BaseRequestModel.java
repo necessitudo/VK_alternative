@@ -3,6 +3,9 @@ package ru.necessitudo.app.vk_alternative.rest.model.request;
 import com.google.gson.annotations.SerializedName;
 import com.vk.sdk.api.VKApiConst;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import ru.necessitudo.app.vk_alternative.CurrentUser;
 import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 
@@ -10,7 +13,7 @@ import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
  * Created by olegdubrovin on 11/12/17.
  */
 
-public class BaseRequestModel {
+public abstract class BaseRequestModel {
 
     @SerializedName(VKApiConst.VERSION)
     Double version = ApiConsts.DEFAULT_VERSION;
@@ -25,6 +28,24 @@ public class BaseRequestModel {
     public String getAccessToken() {
         return accessToken;
     }
+
+     public Map<String, String> toMap(){
+
+         Map<String, String> map = new HashMap<>();
+
+         map.put(VKApiConst.VERSION, String.valueOf(getVersion()));
+
+         if(accessToken!=null){
+             map.put(VKApiConst.ACCESS_TOKEN, getAccessToken());
+
+         }
+
+         onMapCreate(map);
+         return map;
+
+     }
+
+     public  abstract void onMapCreate(Map<String, String> map);
 
 
 }

@@ -19,6 +19,7 @@ import ru.necessitudo.app.vk_alternative.CurrentUser;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
+import ru.necessitudo.app.vk_alternative.rest.model.request.WallGetRequestModel;
 import ru.necessitudo.app.vk_alternative.rest.model.response.BaseItemResponse;
 import ru.necessitudo.app.vk_alternative.rest.model.response.Full;
 import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
@@ -46,7 +47,7 @@ public class NewsFeedFragment extends BaseFragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mWallApi.get("-86529522", CurrentUser.getAccessToken(), 1, "5.67").enqueue(new Callback<WallGetResponce>() {
+        mWallApi.get(new WallGetRequestModel(-86529522).toMap()).enqueue(new Callback<WallGetResponce>() {
             @Override
             public void onResponse(Call<WallGetResponce> call, Response<WallGetResponce> response) {
                 Toast.makeText(getActivity(), "Likes: "+ response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_LONG).show();

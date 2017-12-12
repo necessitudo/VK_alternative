@@ -1,9 +1,12 @@
 package ru.necessitudo.app.vk_alternative.rest.api;
 
+import java.util.Map;
+
 import model.WallItem;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 import ru.necessitudo.app.vk_alternative.rest.model.response.BaseItemResponse;
 import ru.necessitudo.app.vk_alternative.rest.model.response.Full;
 import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
@@ -15,8 +18,5 @@ import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
 public interface WallApi {
 
     @GET(ApiMethods.WALL_GET)
-    Call<WallGetResponce> get(@Query("owner_id") String ownerId,
-                                               @Query("access_token") String accessToken,
-                                               @Query("extended") Integer extended,
-                                               @Query("v") String version);
+    Call<WallGetResponce> get(@QueryMap Map<String, String> map);
 }
