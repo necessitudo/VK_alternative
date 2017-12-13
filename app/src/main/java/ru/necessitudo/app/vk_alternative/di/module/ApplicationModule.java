@@ -2,6 +2,7 @@ package ru.necessitudo.app.vk_alternative.di.module;
 
 import android.app.Application;
 import android.content.Context;
+import android.graphics.Typeface;
 
 import javax.inject.Singleton;
 
@@ -28,6 +29,12 @@ public class ApplicationModule {
 
         return  mApplication;
 
+    }
+
+    @Provides
+    @Singleton
+    Typeface provideGoogleTypeFace(Context context){
+        return Typeface.createFromAsset(context.getAssets(), "MaterialIcons-Regular.ttf");
     }
 
 }

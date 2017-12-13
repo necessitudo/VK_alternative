@@ -1,5 +1,5 @@
 
-package model;
+package ru.necessitudo.app.vk_alternative.model;
 
 import java.util.ArrayList;
 import java.util.List;

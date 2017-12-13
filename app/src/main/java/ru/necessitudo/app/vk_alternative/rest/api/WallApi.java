@@ -2,13 +2,9 @@ package ru.necessitudo.app.vk_alternative.rest.api;
 
 import java.util.Map;
 
-import model.WallItem;
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
-import ru.necessitudo.app.vk_alternative.rest.model.response.BaseItemResponse;
-import ru.necessitudo.app.vk_alternative.rest.model.response.Full;
 import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
 
 /**
