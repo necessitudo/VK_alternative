@@ -4,7 +4,7 @@ package ru.necessitudo.app.vk_alternative.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Group {
+public class Group implements  Owner{
 
     @SerializedName("id")
     @Expose
@@ -37,7 +37,17 @@ public class Group {
     @Expose
     private String photo200;
 
-    public Integer getId() {
+    @Override
+    public String getFullName() {
+        return null;
+    }
+
+    @Override
+    public String getPhoto() {
+        return null;
+    }
+
+    public int getId() {
         return id;
     }
 

@@ -8,6 +8,26 @@ import com.google.gson.annotations.SerializedName;
 
 public class WallItem {
 
+    public String senderName;
+
+    public String getSenderName() {
+        return senderName;
+    }
+
+    public void setSenderName(String senderName) {
+        this.senderName = senderName;
+    }
+
+    public String getSenderPhoto() {
+        return senderPhoto;
+    }
+
+    public void setSenderPhoto(String senderPhoto) {
+        this.senderPhoto = senderPhoto;
+    }
+
+    public String senderPhoto;
+
     @SerializedName("id")
     @Expose
     private Integer id;
@@ -167,5 +187,19 @@ public class WallItem {
     public void setViews(Views views) {
         this.views = views;
     }
+
+    public boolean haveSharedRepost(){
+        return copyHistory.size()>0;
+
+    }
+
+    public WallItem getSharedRepost(){
+       if (haveSharedRepost()){
+           return copyHistory.get(0);
+
+       }
+       return null;
+    }
+
 
 }
