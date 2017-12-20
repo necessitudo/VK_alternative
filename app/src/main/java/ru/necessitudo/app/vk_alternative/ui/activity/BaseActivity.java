@@ -2,6 +2,7 @@ package ru.necessitudo.app.vk_alternative.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
+
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 
@@ -39,10 +40,10 @@ public abstract  class BaseActivity extends MvpAppCompatActivity{
 
         setContentView(R.layout.activity_base);
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FrameLayout parent = findViewById(R.id.main_wraper);
+        FrameLayout parent = (FrameLayout) findViewById(R.id.main_wraper);
 
         getLayoutInflater().inflate(getMainContentLayout(), parent);
 

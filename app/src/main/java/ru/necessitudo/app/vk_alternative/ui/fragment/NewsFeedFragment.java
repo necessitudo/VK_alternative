@@ -21,7 +21,10 @@ import retrofit2.Response;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.common.BaseAdapter;
+import ru.necessitudo.app.vk_alternative.common.utils.VkListHelper;
 import ru.necessitudo.app.vk_alternative.model.WallItem;
+import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
+import ru.necessitudo.app.vk_alternative.model.view.NewItemHeaderViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.NewsFeedItemBodyViewModel;
 import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
 import ru.necessitudo.app.vk_alternative.rest.model.request.WallGetRequestModel;
@@ -64,10 +67,13 @@ public class NewsFeedFragment extends BaseFragment {
         mWallApi.get(new WallGetRequestModel(-86529522).toMap()).enqueue(new Callback<WallGetResponce>() {
             @Override
             public void onResponse(Call<WallGetResponce> call, Response<WallGetResponce> response) {
-                List<NewsFeedItemBodyViewModel> list = new ArrayList<>();
-                for (WallItem item:response.body().response.getItems()){
-                    list.add(new NewsFeedItemBodyViewModel(item));
-                }
+                List<WallItem> wallItems = VkListHelper.getWallList(response.body().response);
+               List<BaseViewModel> list = new ArrayList<>();
+               for (WallItem item:wallItems){
+                   list.add(new NewItemHeaderViewModel(item));
+                   list.add(new NewsFeedItemBodyViewModel(item));
+               }
+
                 mBaseAdapter.addItems(list);
                 Toast.makeText(getActivity(), "Likes: "+ response.body().response.getItems().get(0).getLikes().getCount(), Toast.LENGTH_LONG).show();
             }

@@ -45,7 +45,7 @@ public class NewItemHeaderViewModel extends BaseViewModel{
         return mProfileName;
     }
 
-    public boolean isIsRepost() {
+    public boolean isRepost() {
         return mIsRepost;
     }
 

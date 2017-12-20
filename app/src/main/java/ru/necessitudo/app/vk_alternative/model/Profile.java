@@ -115,7 +115,6 @@ public class Profile implements Owner{
         return firstName + " " + lastName;
     }
 
-    @Override
     public String getPhoto() {
         return photo100;
     }
