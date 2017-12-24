@@ -9,6 +9,8 @@ import ru.necessitudo.app.vk_alternative.di.module.RestModule;
 import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.ui.activity.MainActivity;
 import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
+import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemBodyHolder;
+import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemFooterHolder;
 
 /**
  * Created by olegdubrovin on 06/12/17.
@@ -24,4 +26,11 @@ public interface ApplicationComponent {
 
 
     void inject(NewsFeedFragment fragment);
+
+    void inject(NewsItemBodyHolder holder);
+
+    void inject(NewsItemFooterHolder holder);
+
+
+
 }

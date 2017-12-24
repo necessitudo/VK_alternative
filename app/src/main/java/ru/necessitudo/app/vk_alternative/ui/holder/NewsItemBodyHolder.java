@@ -2,34 +2,50 @@ package ru.necessitudo.app.vk_alternative.ui.holder;
 
 import android.view.View;
 import android.widget.TextView;
+import android.graphics.Typeface;
 
+import javax.inject.Inject;
+
+import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
-import ru.necessitudo.app.vk_alternative.model.view.NewsFeedItemBodyViewModel;
+import ru.necessitudo.app.vk_alternative.model.view.NewsItemBodyViewModel;
 
 /**
  * Created by olegdubrovin on 13/12/17.
  */
 
-public class NewsItemBodyHolder extends  BaseViewHolder<NewsFeedItemBodyViewModel>{
+public class NewsItemBodyHolder extends  BaseViewHolder<NewsItemBodyViewModel>{
 
-    public TextView mText;
+    public TextView tvText;
 
+    private TextView tvAttachments;
 
+    @Inject
+    protected Typeface mFontGoogle;
 
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
 
-        mText  = itemView.findViewById(R.id.tv_text);
+        MyApplication.getApplicationComponent().inject(this);
+
+        tvText  = itemView.findViewById(R.id.tv_text);
+        tvAttachments = itemView.findViewById(R.id.tv_attachments);
+
+        if (tvAttachments!= null){
+            tvAttachments.setTypeface(mFontGoogle);
+        }
     }
 
     @Override
-    public void bindViewHolder(NewsFeedItemBodyViewModel newsFeedItemBody) {
-        mText.setText(newsFeedItemBody.getmText());
+    public void bindViewHolder(NewsItemBodyViewModel item) {
+        tvText.setText(item.getmText());
+        tvAttachments.setText(item.getmAttachmentsString());
 
     }
 
     @Override
     public void unbindViewHolder() {
-        mText.setText(null);
+        tvText.setText(null);
+        tvAttachments.setText(null);
     }
 }

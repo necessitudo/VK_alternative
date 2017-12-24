@@ -28,7 +28,7 @@ public class NewItemHeaderViewModel extends BaseViewModel{
         this.mIsRepost = wallItem.haveSharedRepost();
 
         if (mIsRepost){
-            this.mRepostProfileName = wallItem.getSharedRepost().senderName;
+            this.mRepostProfileName = wallItem.getSharedRepost().getSenderName();
         }
 
     }

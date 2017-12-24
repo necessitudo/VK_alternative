@@ -20,10 +20,18 @@ public class VkListHelper {
             wallItem.setSenderName(sender.getFullName());
             wallItem.setSenderPhoto(sender.getPhoto());
 
+            wallItem.setAttachmentsString(Utils.convertAttachmentsToFontIcons(wallItem.getAttachments()));
+
             if (wallItem.haveSharedRepost()){
                 Owner responceSender = responce.getSender(wallItem.getSharedRepost().getFromId());
                 wallItem.getSharedRepost().setSenderName(sender.getFullName());
                 wallItem.getSharedRepost().setSenderPhoto(sender.getPhoto());
+
+                wallItem.getSharedRepost().setAttachmentsString(Utils.convertAttachmentsToFontIcons(
+                        wallItem.getSharedRepost().getAttachments()
+                ));
+
+
             }
         }
 
