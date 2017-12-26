@@ -10,7 +10,7 @@ import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemHeaderHolder;
  * Created by olegdubrovin on 18/12/17.
  */
 
-public class NewItemHeaderViewModel extends BaseViewModel{
+public class NewsItemHeaderViewModel extends BaseViewModel{
 
     private int mId;
 
@@ -20,7 +20,7 @@ public class NewItemHeaderViewModel extends BaseViewModel{
     private boolean mIsRepost;
     private String mRepostProfileName;
 
-    public NewItemHeaderViewModel(WallItem wallItem) {
+    public NewsItemHeaderViewModel(WallItem wallItem) {
         this.mId = wallItem.getId();
         this.mProfilePhoto = wallItem.getSenderPhoto();
         this.mProfileName = wallItem.getSenderName();

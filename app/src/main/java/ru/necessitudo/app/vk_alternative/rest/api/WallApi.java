@@ -1,8 +1,9 @@
 package ru.necessitudo.app.vk_alternative.rest.api;
 
+
 import java.util.Map;
 
-import retrofit2.Call;
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.QueryMap;
 import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
@@ -14,5 +15,5 @@ import ru.necessitudo.app.vk_alternative.rest.model.response.WallGetResponce;
 public interface WallApi {
 
     @GET(ApiMethods.WALL_GET)
-    Call<WallGetResponce> get(@QueryMap Map<String, String> map);
+    Observable<WallGetResponce> get(@QueryMap Map<String, String> map);
 }

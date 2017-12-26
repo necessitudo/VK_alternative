@@ -60,4 +60,9 @@ public class NewsItemBodyViewModel extends BaseViewModel {
     protected BaseViewHolder onCreateViewHolder(View view) {
         return new NewsItemBodyHolder(view);
     }
+
+    @Override
+    public boolean isItemDecorator() {
+        return true;
+    }
 }

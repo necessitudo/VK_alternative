@@ -81,8 +81,6 @@ public class NewsItemFooterViewModel extends  BaseViewModel{
         this.mReposts = new RepostCounterViewModel(wallItem.getReposts());
         this.mComments = new CommentCounterViewModel(wallItem.getComments());
 
-
-
     }
 
     @Override
@@ -94,5 +92,11 @@ public class NewsItemFooterViewModel extends  BaseViewModel{
     @Override
     protected BaseViewHolder onCreateViewHolder(View view) {
         return new NewsItemFooterHolder(view);
+    }
+
+
+    @Override
+    public boolean isItemDecorator() {
+        return true;
     }
 }

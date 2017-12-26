@@ -9,13 +9,13 @@ import com.bumptech.glide.Glide;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.necessitudo.app.vk_alternative.R;
-import ru.necessitudo.app.vk_alternative.model.view.NewItemHeaderViewModel;
+import ru.necessitudo.app.vk_alternative.model.view.NewsItemHeaderViewModel;
 
 /**
  * Created by olegdubrovin on 18/12/17.
  */
 
-public class NewsItemHeaderHolder extends BaseViewHolder<NewItemHeaderViewModel> {
+public class NewsItemHeaderHolder extends BaseViewHolder<NewsItemHeaderViewModel> {
 
     private CircleImageView civProfileImage;
     private TextView tvName;
@@ -35,7 +35,7 @@ public class NewsItemHeaderHolder extends BaseViewHolder<NewItemHeaderViewModel>
     }
 
     @Override
-    public void bindViewHolder(NewItemHeaderViewModel item) {
+    public void bindViewHolder(NewsItemHeaderViewModel item) {
         Context context = itemView.getContext();
 
         Glide.with(context)

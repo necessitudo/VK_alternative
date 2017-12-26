@@ -42,4 +42,8 @@ public abstract class BaseViewModel {
         }
 
     }
+
+    public boolean isItemDecorator(){
+        return  false;
+    }
 }
