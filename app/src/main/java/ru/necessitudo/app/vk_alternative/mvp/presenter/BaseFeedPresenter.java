@@ -4,8 +4,14 @@ import com.arellomobile.mvp.MvpPresenter;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
+import io.reactivex.Observable;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
+import io.realm.RealmObject;
+import ru.necessitudo.app.vk_alternative.common.manager.NetworkManager;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
 import ru.necessitudo.app.vk_alternative.mvp.view.BaseFeedView;
 
@@ -20,6 +26,9 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
 
     private boolean mIsInLoading;
 
+    @Inject
+    NetworkManager mNetworkManager;
+
     public void loadData(ProgressType progressType, int offset, int count){
 
         if (mIsInLoading){
@@ -28,7 +37,16 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
 
         mIsInLoading = true;
 
-        onCreateLoadDataObservable(count, offset)
+        mNetworkManager.getNetworkObservable()
+                .flatMap(aBoolean -> {
+                    if (!aBoolean && offset>0){
+                        return Observable.empty();
+                    }
+                    return aBoolean
+                            ? onCreateLoadDataObservable(count, offset)
+                            : onCreateRestoreDataObservable();
+
+                })
                 .toList()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -111,4 +129,12 @@ public abstract class BaseFeedPresenter<V extends BaseFeedView> extends MvpPrese
             getViewState().setItems(items);
         }
     }
+
+    public void saveToDb(RealmObject item){
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
+
+    }
+
+    public abstract Observable<BaseViewModel> onCreateRestoreDataObservable();
 }

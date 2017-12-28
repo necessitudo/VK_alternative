@@ -4,7 +4,9 @@ package ru.necessitudo.app.vk_alternative.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Group implements Owner{
+import io.realm.RealmObject;
+
+public class Group extends RealmObject implements Owner{
 
     @SerializedName("id")
     @Expose

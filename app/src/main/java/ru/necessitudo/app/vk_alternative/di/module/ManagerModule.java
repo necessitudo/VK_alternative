@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.necessitudo.app.vk_alternative.common.manager.MyFragmentManager;
+import ru.necessitudo.app.vk_alternative.common.manager.NetworkManager;
 
 /**
  * Created by olegdubrovin on 06/12/17.
@@ -17,6 +18,14 @@ public class ManagerModule  {
     @Provides
     MyFragmentManager provideMyFragmentManager(){
         return new MyFragmentManager();
+
+    }
+
+
+    @Singleton
+    @Provides
+    NetworkManager provideNetworkManager(){
+        return new NetworkManager();
 
     }
 }
