@@ -1,11 +1,13 @@
 package ru.necessitudo.app.vk_alternative.ui.holder;
 
+import android.graphics.Typeface;
 import android.view.View;
 import android.widget.TextView;
-import android.graphics.Typeface;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.model.view.NewsItemBodyViewModel;
@@ -16,9 +18,11 @@ import ru.necessitudo.app.vk_alternative.model.view.NewsItemBodyViewModel;
 
 public class NewsItemBodyHolder extends  BaseViewHolder<NewsItemBodyViewModel>{
 
-    public TextView tvText;
+    @BindView(R.id.tv_text)
+    TextView tvText;
 
-    private TextView tvAttachments;
+    @BindView(R.id.tv_attachments)
+    TextView tvAttachments;
 
     @Inject
     protected Typeface mFontGoogle;
@@ -26,10 +30,9 @@ public class NewsItemBodyHolder extends  BaseViewHolder<NewsItemBodyViewModel>{
     public NewsItemBodyHolder(View itemView) {
         super(itemView);
 
-        MyApplication.getApplicationComponent().inject(this);
+        ButterKnife.bind(this, itemView);
 
-        tvText  = itemView.findViewById(R.id.tv_text);
-        tvAttachments = itemView.findViewById(R.id.tv_attachments);
+        MyApplication.getApplicationComponent().inject(this);
 
         if (tvAttachments!= null){
             tvAttachments.setTypeface(mFontGoogle);
@@ -38,6 +41,7 @@ public class NewsItemBodyHolder extends  BaseViewHolder<NewsItemBodyViewModel>{
 
     @Override
     public void bindViewHolder(NewsItemBodyViewModel item) {
+
         tvText.setText(item.getmText());
         tvAttachments.setText(item.getmAttachmentsString());
 

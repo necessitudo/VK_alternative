@@ -8,6 +8,8 @@ import android.widget.TextView;
 
 import javax.inject.Inject;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.common.utils.Utils;
@@ -22,16 +24,26 @@ import ru.necessitudo.app.vk_alternative.model.view.counter.RepostCounterViewMod
 
 public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel> {
 
-    private TextView tvDate;
+    @BindView(R.id.tv_date)
+    TextView tvDate;
 
-    private TextView tvLikesCount;
-    private TextView tvLikesIcon;
+    @BindView(R.id.tv_likes_count)
+    TextView tvLikesCount;
 
-    private TextView tvCommentsCount;
-    private TextView tvCommentsIcon;
+    @BindView(R.id.tv_likes_icon)
+    TextView tvLikesIcon;
 
-    private TextView tvRepostsCount;
-    private TextView tvRepostsIcon;
+    @BindView(R.id.tv_comments_count)
+    TextView tvCommentsCount;
+
+    @BindView(R.id.tv_comments_icon)
+    TextView tvCommentsIcon;
+
+    @BindView(R.id.tv_reposts_count)
+    TextView tvRepostsCount;
+
+    @BindView(R.id.tv_reposts_icon)
+    TextView tvRepostsIcon;
 
     @Inject
     Typeface mGoogleFontTypeface;
@@ -41,26 +53,17 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
 
     public NewsItemFooterHolder(View itemView) {
         super(itemView);
+
+        ButterKnife.bind(this, itemView);
+
         MyApplication.getApplicationComponent().inject(this);
 
         mContext = itemView.getContext();
         mResources = mContext.getResources();
 
-        tvDate = itemView.findViewById(R.id.tv_date);
-
-        tvLikesCount = itemView.findViewById(R.id.tv_likes_count);
-        tvLikesIcon = itemView.findViewById(R.id.tv_likes_icon);
-
-        tvRepostsCount = itemView.findViewById(R.id.tv_reposts_count);
-        tvRepostsIcon = itemView.findViewById(R.id.tv_reposts_icon);
-
-        tvCommentsCount = itemView.findViewById(R.id.tv_comments_count);
-        tvCommentsIcon = itemView.findViewById(R.id.tv_comments_icon);
-
         tvLikesIcon.setTypeface(mGoogleFontTypeface);
         tvRepostsIcon.setTypeface(mGoogleFontTypeface);
         tvCommentsIcon.setTypeface(mGoogleFontTypeface);
-
 
     }
 
@@ -71,7 +74,6 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
         bindLikes(item.getLikes());
         bindComment(item.getComments());
         bindReposts(item.getReposts());
-
 
     }
 
@@ -102,7 +104,6 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
         tvLikesCount.setText(null);
         tvCommentsCount.setText(null);
         tvRepostsCount.setText(null);
-
 
     }
 }

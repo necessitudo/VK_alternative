@@ -33,7 +33,6 @@ public class NewsFeedPresenter  extends  BaseFeedPresenter<BaseFeedView>{
     @Inject
     WallApi mWallApi;
 
-
     public  NewsFeedPresenter(){
         MyApplication.getApplicationComponent().inject(this);
     }

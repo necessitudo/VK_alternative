@@ -11,6 +11,8 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.common.BaseAdapter;
 import ru.necessitudo.app.vk_alternative.common.manager.MyLinearLayoutManager;
@@ -24,21 +26,23 @@ import ru.necessitudo.app.vk_alternative.mvp.view.BaseFeedView;
 
 public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedView{
 
-
+    @BindView(R.id.rv_list)
     RecyclerView mRecyclerView;
 
     BaseAdapter mBaseAdapter;
 
+    @BindView(R.id.swipe_refresh)
     protected SwipeRefreshLayout mSwipeRefreshLayout;
+
     protected ProgressBar mProgressBar;
 
     protected BaseFeedPresenter<BaseFeedView> mBaseFeedPresenter;
 
-
-
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.bind(this, view);
 
         setUpSwipeToRefreshLayout(view);
 
@@ -63,7 +67,6 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     }
 
     private void setUpRecyclerView(View rootView){
-        mRecyclerView = rootView.findViewById(R.id.rv_list);
 
         MyLinearLayoutManager mLinearLayoutManager = new MyLinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(mLinearLayoutManager);
@@ -89,7 +92,6 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
 
     private void setUpSwipeToRefreshLayout(View rootView){
 
-       mSwipeRefreshLayout = rootView.findViewById(R.id.swipe_refresh);
        mSwipeRefreshLayout.setColorSchemeColors(getResources().getColor(R.color.colorAccent));
        mSwipeRefreshLayout.setOnRefreshListener(()->onCreateFeedPresenter().loadRefresh());
        mProgressBar = getBaseActivity().getProgressBar();
@@ -103,8 +105,6 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
     @Override
     public void hideRefreshing() {
         mSwipeRefreshLayout.setRefreshing(false);
-
-
     }
 
     @Override

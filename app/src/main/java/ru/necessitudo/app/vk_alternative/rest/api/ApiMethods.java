@@ -7,4 +7,5 @@ package ru.necessitudo.app.vk_alternative.rest.api;
 public class ApiMethods {
 
     public static final String WALL_GET = "wall.get";
+    public static final String USERS_GET = "users.get";
 }
