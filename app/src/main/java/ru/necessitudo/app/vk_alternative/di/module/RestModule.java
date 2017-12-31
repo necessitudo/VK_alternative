@@ -5,6 +5,7 @@ import javax.inject.Singleton;
 import dagger.Module;
 import dagger.Provides;
 import ru.necessitudo.app.vk_alternative.rest.RestClient;
+import ru.necessitudo.app.vk_alternative.rest.api.GroupsApi;
 import ru.necessitudo.app.vk_alternative.rest.api.UsersApi;
 import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
 
@@ -39,5 +40,11 @@ public class RestModule {
     @Singleton
     public UsersApi provideUsersApi(){
         return mRestClient.createService(UsersApi.class);
+    }
+
+    @Provides
+    @Singleton
+    public GroupsApi provideGroupsApi(){
+        return mRestClient.createService(GroupsApi.class);
     }
 }

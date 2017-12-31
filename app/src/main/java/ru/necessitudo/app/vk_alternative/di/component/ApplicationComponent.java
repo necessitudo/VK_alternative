@@ -8,6 +8,7 @@ import ru.necessitudo.app.vk_alternative.di.module.ApplicationModule;
 import ru.necessitudo.app.vk_alternative.di.module.ManagerModule;
 import ru.necessitudo.app.vk_alternative.di.module.RestModule;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
+import ru.necessitudo.app.vk_alternative.mvp.presenter.MembersPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.NewsFeedPresenter;
 import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.ui.activity.MainActivity;
@@ -39,6 +40,8 @@ public interface ApplicationComponent {
     void inject(NetworkManager manager);
 
     void inject(MainPresenter presenter);
+
+    void inject(MembersPresenter presenter);
 
 
 

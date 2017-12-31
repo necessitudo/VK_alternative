@@ -14,11 +14,16 @@ import io.realm.Realm;
 import io.realm.RealmObject;
 import ru.necessitudo.app.vk_alternative.CurrentUser;
 import ru.necessitudo.app.vk_alternative.MyApplication;
+import ru.necessitudo.app.vk_alternative.common.manager.MyFragmentManager;
 import ru.necessitudo.app.vk_alternative.common.manager.NetworkManager;
 import ru.necessitudo.app.vk_alternative.model.Profile;
 import ru.necessitudo.app.vk_alternative.mvp.view.MainView;
 import ru.necessitudo.app.vk_alternative.rest.api.UsersApi;
 import ru.necessitudo.app.vk_alternative.rest.model.request.UsersGetRequestModel;
+import ru.necessitudo.app.vk_alternative.ui.fragment.BaseFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.MembersFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.MyPostsFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
 
 /**
  * Created by olegdubrovin on 04/12/17.
@@ -26,6 +31,10 @@ import ru.necessitudo.app.vk_alternative.rest.model.request.UsersGetRequestModel
 
 @InjectViewState
 public class MainPresenter extends MvpPresenter<MainView>{
+
+
+    @Inject
+    MyFragmentManager myFragmentManager;
 
     @Inject
     UsersApi mUserApi;
@@ -79,7 +88,7 @@ public class MainPresenter extends MvpPresenter<MainView>{
                         getViewState().startSignIn();
                     }
                     return aBoolean
-                            ? getProfileFromDb()
+                            ? getProfileFromNetwork()
                             : getProfileFromDb();
                 })
                 .subscribeOn(Schedulers.io())
@@ -89,5 +98,28 @@ public class MainPresenter extends MvpPresenter<MainView>{
                 }, error -> {
                     error.printStackTrace();
                 });
+        }
+
+    public void drawerItemClick(int id){
+
+        BaseFragment fragment = null;
+        switch (id){
+            case 1:
+                fragment = new NewsFeedFragment();
+                break;
+            case 2:
+                fragment = new MyPostsFragment();
+                break;
+            case 4 :
+                fragment = new MembersFragment();
+                break;
+        }
+
+        if(fragment != null && !myFragmentManager.isAlreadyContains(fragment)){
+            getViewState().showFragmentFromDrawer(fragment);
+
+        }
+
+
         }
     }

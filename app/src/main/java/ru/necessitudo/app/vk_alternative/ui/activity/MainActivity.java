@@ -91,6 +91,10 @@ public class MainActivity extends BaseActivity implements MainView {
                 .addDrawerItems(item1, item2, item3,
                         new SectionDrawerItem().withName("Группа"),
                         item4, item5, item6, item7)
+                .withOnDrawerItemClickListener((view, position, drawerItem)-> {
+                    mPresenter.drawerItemClick((int) drawerItem.getIdentifier());
+                    return false;
+                })
                 .build();
 
     }
@@ -150,6 +154,12 @@ public class MainActivity extends BaseActivity implements MainView {
         );
 
         mAccountHeader.setProfiles(profileDrawerItems);
+
+    }
+
+    @Override
+    public void showFragmentFromDrawer(BaseFragment baseFragment) {
+        setContent(baseFragment);
 
     }
 }

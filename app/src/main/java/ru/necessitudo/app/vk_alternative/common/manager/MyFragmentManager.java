@@ -107,7 +107,7 @@ public class MyFragmentManager {
 
     }
 
-    private  boolean isAlreadyContains(BaseFragment baseFragment){
+    public  boolean isAlreadyContains(BaseFragment baseFragment){
 
         if(baseFragment==null){
             return false;

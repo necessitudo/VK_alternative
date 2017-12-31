@@ -9,11 +9,14 @@ import java.util.concurrent.Callable;
 import javax.inject.Inject;
 
 import io.reactivex.Observable;
+import io.reactivex.ObservableTransformer;
 import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
+import ru.necessitudo.app.vk_alternative.CurrentUser;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.common.utils.VkListHelper;
+import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 import ru.necessitudo.app.vk_alternative.model.WallItem;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.NewsItemBodyViewModel;
@@ -30,6 +33,8 @@ import ru.necessitudo.app.vk_alternative.rest.model.request.WallGetRequestModel;
 @InjectViewState
 public class NewsFeedPresenter  extends  BaseFeedPresenter<BaseFeedView>{
 
+    private boolean enabledIdFiltering = false;
+
     @Inject
     WallApi mWallApi;
 
@@ -37,10 +42,27 @@ public class NewsFeedPresenter  extends  BaseFeedPresenter<BaseFeedView>{
         MyApplication.getApplicationComponent().inject(this);
     }
 
+    public void setEnabledIdFiltering(boolean enabledIdFiltering) {
+        this.enabledIdFiltering = enabledIdFiltering;
+    }
+
+    protected ObservableTransformer<WallItem, WallItem> applyFilter(){
+        if(enabledIdFiltering && CurrentUser.getId() !=null){
+            return baseItemObservable -> baseItemObservable.filter(
+                    wallItem -> CurrentUser.getId().equals(String.valueOf(wallItem.getFromId()))
+            );
+        } else {
+            return baseItemObservable -> baseItemObservable;
+
+        }
+
+    }
+
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
-        return mWallApi.get(new WallGetRequestModel(-86529522, count, offset).toMap())
+        return mWallApi.get(new WallGetRequestModel(ApiConsts.MY_GROUP_ID, count, offset).toMap())
                 .flatMap(full->Observable.fromIterable(VkListHelper.getWallList(full.response)))
+                .compose(applyFilter())
                 .doOnNext(wallItem -> saveToDb(wallItem))
                 .flatMap(wallItem->{
                     List<BaseViewModel> baseItems = new ArrayList<>();
@@ -55,6 +77,7 @@ public class NewsFeedPresenter  extends  BaseFeedPresenter<BaseFeedView>{
     public Observable<BaseViewModel> onCreateRestoreDataObservable() {
         return Observable.fromCallable(getListFromrealmCallable())
                 .flatMap(Observable::fromIterable)
+                .compose(applyFilter())
                 .flatMap(wallItem -> Observable.fromIterable(parsePojoModel(wallItem)));
     }
 
