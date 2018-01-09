@@ -21,6 +21,8 @@ import ru.necessitudo.app.vk_alternative.mvp.view.MainView;
 import ru.necessitudo.app.vk_alternative.rest.api.UsersApi;
 import ru.necessitudo.app.vk_alternative.rest.model.request.UsersGetRequestModel;
 import ru.necessitudo.app.vk_alternative.ui.fragment.BaseFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.BoardFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.InfoFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.MembersFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.MyPostsFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
@@ -112,6 +114,13 @@ public class MainPresenter extends MvpPresenter<MainView>{
                 break;
             case 4 :
                 fragment = new MembersFragment();
+                break;
+            case 5:
+                fragment = new BoardFragment();
+                break;
+
+            case 6:
+                fragment = new InfoFragment();
                 break;
         }
 
