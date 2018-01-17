@@ -1,6 +1,6 @@
 package ru.necessitudo.app.vk_alternative.model.view.counter;
 
-import ru.necessitudo.app.vk_alternative.model.Reposts;
+import ru.necessitudo.app.vk_alternative.model.countable.Reposts;
 
 /**
  * Created by olegdubrovin on 24/12/17.

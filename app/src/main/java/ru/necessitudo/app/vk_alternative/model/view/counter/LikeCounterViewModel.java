@@ -1,6 +1,6 @@
 package ru.necessitudo.app.vk_alternative.model.view.counter;
 
-import ru.necessitudo.app.vk_alternative.model.Likes;
+import ru.necessitudo.app.vk_alternative.model.countable.Likes;
 
 /**
  * Created by olegdubrovin on 24/12/17.

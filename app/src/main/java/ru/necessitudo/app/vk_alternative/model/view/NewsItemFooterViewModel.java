@@ -6,8 +6,8 @@ import ru.necessitudo.app.vk_alternative.model.WallItem;
 import ru.necessitudo.app.vk_alternative.model.view.counter.CommentCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.LikeCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.RepostCounterViewModel;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
-import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemFooterHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.NewsItemFooterHolder;
 
 /**
  * Created by olegdubrovin on 24/12/17.

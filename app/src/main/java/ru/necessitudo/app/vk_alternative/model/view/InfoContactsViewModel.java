@@ -6,7 +6,7 @@ import android.widget.RelativeLayout;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.R;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
  * Created by olegdubrovin on 09/01/18.

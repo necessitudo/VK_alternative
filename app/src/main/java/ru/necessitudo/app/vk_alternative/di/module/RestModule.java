@@ -8,6 +8,7 @@ import ru.necessitudo.app.vk_alternative.rest.RestClient;
 import ru.necessitudo.app.vk_alternative.rest.api.BoardApi;
 import ru.necessitudo.app.vk_alternative.rest.api.GroupsApi;
 import ru.necessitudo.app.vk_alternative.rest.api.UsersApi;
+import ru.necessitudo.app.vk_alternative.rest.api.VideoApi;
 import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
 
 /**
@@ -54,4 +55,11 @@ public class RestModule {
     public BoardApi provideBoardApi(){
         return mRestClient.createService(BoardApi.class);
     }
+
+    @Provides
+    @Singleton
+    public VideoApi provideVideoApi(){
+        return mRestClient.createService(VideoApi.class);
+    }
+
 }

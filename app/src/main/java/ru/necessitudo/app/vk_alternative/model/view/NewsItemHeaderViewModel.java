@@ -3,8 +3,8 @@ package ru.necessitudo.app.vk_alternative.model.view;
 import android.view.View;
 
 import ru.necessitudo.app.vk_alternative.model.WallItem;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
-import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemHeaderHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.NewsItemHeaderHolder;
 
 /**
  * Created by olegdubrovin on 18/12/17.

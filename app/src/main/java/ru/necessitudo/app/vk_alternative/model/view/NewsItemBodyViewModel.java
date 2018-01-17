@@ -3,8 +3,8 @@ package ru.necessitudo.app.vk_alternative.model.view;
 import android.view.View;
 
 import ru.necessitudo.app.vk_alternative.model.WallItem;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
-import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemBodyHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.NewsItemBodyHolder;
 
 /**
  * Created by olegdubrovin on 13/12/17.
@@ -18,7 +18,7 @@ public class NewsItemBodyViewModel extends BaseViewModel {
 
     private String mAttachmentsString;
 
-    public String getmAttachmentsString() {
+    public String getAttachmentsString() {
         return mAttachmentsString;
     }
 
@@ -43,11 +43,11 @@ public class NewsItemBodyViewModel extends BaseViewModel {
         }
     }
 
-    public int getmId() {
+    public int getId() {
         return mId;
     }
 
-    public String getmText() {
+    public String getText() {
         return mText;
     }
 

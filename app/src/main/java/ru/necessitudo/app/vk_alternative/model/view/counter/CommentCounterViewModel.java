@@ -1,6 +1,6 @@
 package ru.necessitudo.app.vk_alternative.model.view.counter;
 
-import ru.necessitudo.app.vk_alternative.model.Comments;
+import ru.necessitudo.app.vk_alternative.model.countable.Comments;
 
 /**
  * Created by olegdubrovin on 24/12/17.

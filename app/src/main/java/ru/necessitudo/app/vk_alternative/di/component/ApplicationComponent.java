@@ -12,11 +12,15 @@ import ru.necessitudo.app.vk_alternative.mvp.presenter.InfoPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MembersPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.NewsFeedPresenter;
+import ru.necessitudo.app.vk_alternative.mvp.presenter.OpenedPostPresenter;
 import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.ui.activity.MainActivity;
 import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
-import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemBodyHolder;
-import ru.necessitudo.app.vk_alternative.ui.holder.NewsItemFooterHolder;
+import ru.necessitudo.app.vk_alternative.ui.fragment.OpenedPostFragment;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.attachment.ImageAttachmentHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.NewsItemBodyHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.NewsItemFooterHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.attachment.VideoAttachmentHolder;
 
 /**
  * Created by olegdubrovin on 06/12/17.
@@ -32,6 +36,7 @@ public interface ApplicationComponent {
 
 
     void inject(NewsFeedFragment fragment);
+    void inject(OpenedPostFragment fragment);
 
     void inject(NewsItemBodyHolder holder);
 
@@ -49,7 +54,10 @@ public interface ApplicationComponent {
 
     void inject(InfoPresenter presenter);
 
+    void inject(OpenedPostPresenter presenter);
 
+    void inject(ImageAttachmentHolder holder);
+    void inject(VideoAttachmentHolder holder);
 
 
 }

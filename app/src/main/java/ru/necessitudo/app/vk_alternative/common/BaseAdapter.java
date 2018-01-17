@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
  * Created by olegdubrovin on 13/12/17.

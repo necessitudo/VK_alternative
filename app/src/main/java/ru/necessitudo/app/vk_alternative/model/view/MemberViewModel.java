@@ -11,7 +11,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.model.Member;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
  * Created by olegdubrovin on 31/12/17.

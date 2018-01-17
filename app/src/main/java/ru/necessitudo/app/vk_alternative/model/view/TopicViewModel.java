@@ -7,7 +7,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.model.Topic;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
  * Created by olegdubrovin on 04/01/18.

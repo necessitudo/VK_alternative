@@ -6,7 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import ru.necessitudo.app.vk_alternative.R;
-import ru.necessitudo.app.vk_alternative.ui.holder.BaseViewHolder;
+import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
  * Created by olegdubrovin on 13/12/17.
@@ -32,9 +32,17 @@ public abstract class BaseViewModel {
         Topic(R.layout.item_topic),
         InfoStatus(R.layout.item_info_status),
         InfoContacts(R.layout.item_info_contacts),
-        InfoLinks(R.layout.item_info_links);
-
-
+        InfoLinks(R.layout.item_info_links),
+        AttachmentAudio(R.layout.item_attachment_audio),
+        AttachmentDoc(R.layout.item_attachment_doc),
+        AttachmentDocImage(R.layout.item_attachment_doc_image),
+        AttachmentImage(R.layout.item_attachment_image),
+        AttachmentLink(R.layout.item_attachment_link),
+        AttachmentLinkExternal(R.layout.item_attachment_link_external),
+        AttachmentPage(R.layout.item_attachment_page),
+        AttachmentVideo(R.layout.item_attachment_video),
+        OpenedPostHeader(R.layout.item_opened_post_header),
+        OpenedPostRepostHeader(R.layout.item_opened_post_repost_header);
 
 
         private final int id;
