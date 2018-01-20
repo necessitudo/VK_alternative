@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import ru.necessitudo.app.vk_alternative.CurrentUser;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 11/12/17.
@@ -16,7 +16,7 @@ import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 public abstract class BaseRequestModel {
 
     @SerializedName(VKApiConst.VERSION)
-    Double version = ApiConsts.DEFAULT_VERSION;
+    Double version = ApiConstants.DEFAULT_VERSION;
 
     @SerializedName(VKApiConst.ACCESS_TOKEN)
     String accessToken = CurrentUser.getAccessToken();

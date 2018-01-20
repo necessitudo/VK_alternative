@@ -16,7 +16,7 @@ import io.realm.Sort;
 import ru.necessitudo.app.vk_alternative.CurrentUser;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.common.utils.VkListHelper;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.WallItem;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.NewsItemBodyViewModel;
@@ -60,7 +60,7 @@ public class NewsFeedPresenter  extends  BaseFeedPresenter<BaseFeedView>{
 
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
-        return mWallApi.get(new WallGetRequestModel(ApiConsts.MY_GROUP_ID, count, offset).toMap())
+        return mWallApi.get(new WallGetRequestModel(ApiConstants.MY_GROUP_ID, count, offset).toMap())
                 .flatMap(full->Observable.fromIterable(VkListHelper.getWallList(full.response)))
                 .compose(applyFilter())
                 .doOnNext(wallItem -> saveToDb(wallItem))

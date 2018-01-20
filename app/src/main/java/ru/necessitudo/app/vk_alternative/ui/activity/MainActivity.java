@@ -23,7 +23,7 @@ import java.util.List;
 
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.Profile;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.view.MainView;
@@ -119,7 +119,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void startSignIn() {
 
-        VKSdk.login(this, ApiConsts.DEFAULT_LOGIN_SCOPE);
+        VKSdk.login(this, ApiConstants.DEFAULT_LOGIN_SCOPE);
         setUpDrawer();
 
     }

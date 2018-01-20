@@ -5,7 +5,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 
 /**
@@ -25,7 +25,7 @@ public class WallGetRequestModel extends  BaseRequestModel{
 
     @SerializedName(VKApiConst.COUNT)
 
-    int count = ApiConsts.DEFAULT_COUNT;
+    int count = ApiConstants.DEFAULT_COUNT;
 
     @SerializedName(VKApiConst.OFFSET)
     int offset;

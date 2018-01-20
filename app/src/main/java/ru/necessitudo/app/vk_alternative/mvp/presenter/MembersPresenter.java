@@ -12,7 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import ru.necessitudo.app.vk_alternative.MyApplication;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.Member;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.MemberViewModel;
@@ -33,7 +33,7 @@ public class MembersPresenter extends BaseFeedPresenter<BaseFeedView>{
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
         return mGroupsApi.getMembers(new GroupsGetMemberRequestModel(
-                ApiConsts.MY_GROUP_ID, count, offset).toMap())
+                ApiConstants.MY_GROUP_ID, count, offset).toMap())
                 .flatMap(baseItemResponseFull -> {
                     return Observable.fromIterable(baseItemResponseFull.response.getItems());
                 })

@@ -12,7 +12,7 @@ import io.realm.Realm;
 import io.realm.RealmResults;
 import io.realm.Sort;
 import ru.necessitudo.app.vk_alternative.MyApplication;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.Member;
 import ru.necessitudo.app.vk_alternative.model.Topic;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
@@ -38,11 +38,11 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView>{
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
         return mBoardApi.getTopics(new BoardGetTopicsRequestModel(
-                ApiConsts.MY_GROUP_ID, count, offset
+                ApiConstants.MY_GROUP_ID, count, offset
         ).toMap())
                 .flatMap(baseItemResponseFull ->
                         Observable.fromIterable(baseItemResponseFull.response.getItems()))
-                .doOnNext(topic -> topic.setGroupid(ApiConsts.MY_GROUP_ID))
+                .doOnNext(topic -> topic.setGroupid(ApiConstants.MY_GROUP_ID))
                 .doOnNext(this::saveToDb)
                 .map(TopicViewModel::new);
     }
@@ -61,7 +61,7 @@ public class BoardPresenter extends BaseFeedPresenter<BaseFeedView>{
 
             Realm realm = Realm.getDefaultInstance();
             RealmResults<Topic> results = realm.where(Topic.class)
-                    .equalTo("groupId", ApiConsts.MY_GROUP_ID)
+                    .equalTo("groupId", ApiConstants.MY_GROUP_ID)
                     .findAllSorted(sortFields, sortOrder);
 
             return realm.copyFromRealm(results);

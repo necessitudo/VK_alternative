@@ -5,7 +5,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 03/01/18.
@@ -17,7 +17,7 @@ public class BoardGetTopicsRequestModel extends BaseRequestModel  {
     int groupId;
 
     @SerializedName(VKApiConst.COUNT)
-    int count = ApiConsts.DEFAULT_COUNT;
+    int count = ApiConstants.DEFAULT_COUNT;
 
     @SerializedName(VKApiConst.OFFSET)
     int offset = 0;

@@ -12,11 +12,15 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
+import ru.necessitudo.app.vk_alternative.common.manager.MyFragmentManager;
 import ru.necessitudo.app.vk_alternative.common.utils.Utils;
+import ru.necessitudo.app.vk_alternative.model.Place;
 import ru.necessitudo.app.vk_alternative.model.view.NewsItemFooterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.CommentCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.LikeCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.RepostCounterViewModel;
+import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
+import ru.necessitudo.app.vk_alternative.ui.fragment.CommentsFragment;
 
 /**
  * Created by olegdubrovin on 24/12/17.
@@ -48,6 +52,12 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
     @Inject
     Typeface mGoogleFontTypeface;
 
+    @BindView(R.id.rl_comments)
+    public View rlComments;
+
+    @Inject
+    MyFragmentManager mFragmentManager;
+
     private Resources mResources;
     private Context mContext;
 
@@ -74,6 +84,15 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
         bindLikes(item.getLikes());
         bindComment(item.getComments());
         bindReposts(item.getReposts());
+
+        rlComments.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                mFragmentManager.addFragment((BaseActivity) view.getContext(),
+                        CommentsFragment.newInstance(new Place(String.valueOf(item.getOwnerId()), String.valueOf(item.getId()))),
+                        R.id.main_wraper);
+            }
+        });
 
     }
 

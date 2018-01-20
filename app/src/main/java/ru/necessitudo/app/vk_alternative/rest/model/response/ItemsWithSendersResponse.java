@@ -11,7 +11,7 @@ import ru.necessitudo.app.vk_alternative.model.Profile;
  * Created by olegdubrovin on 18/12/17.
  */
 
-public class ItemsWIthSendersResponse<T> extends  BaseItemResponse<T> {
+public class ItemsWithSendersResponse<T> extends  BaseItemResponse<T> {
 
     private List<Profile> profiles = new ArrayList<>();
     private List<Group> groups = new ArrayList<>();

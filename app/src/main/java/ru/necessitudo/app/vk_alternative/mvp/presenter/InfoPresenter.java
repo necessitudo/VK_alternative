@@ -11,7 +11,7 @@ import javax.inject.Inject;
 import io.reactivex.Observable;
 import io.realm.Realm;
 import ru.necessitudo.app.vk_alternative.MyApplication;
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.Group;
 import ru.necessitudo.app.vk_alternative.model.view.BaseViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.InfoContactsViewModel;
@@ -39,7 +39,7 @@ public class InfoPresenter extends  BaseFeedPresenter<BaseFeedView>{
 
     @Override
     public Observable<BaseViewModel> onCreateLoadDataObservable(int count, int offset) {
-        return mGroupApi.getById(new GroupsGetByIdRequestModel(ApiConsts.MY_GROUP_ID).toMap())
+        return mGroupApi.getById(new GroupsGetByIdRequestModel(ApiConstants.MY_GROUP_ID).toMap())
                 .flatMap(listFull -> Observable.fromIterable(listFull.response))
                 .doOnNext(this::saveToDb)
                 .flatMap(group -> Observable.fromIterable(parsePojoModel(group)));
@@ -67,7 +67,7 @@ public class InfoPresenter extends  BaseFeedPresenter<BaseFeedView>{
         return () -> {
             Realm realm = Realm.getDefaultInstance();
             Group result = realm.where(Group.class)
-                    .equalTo("id", Math.abs(ApiConsts.MY_GROUP_ID))
+                    .equalTo("id", Math.abs(ApiConstants.MY_GROUP_ID))
                     .findFirst();
             return realm.copyFromRealm(result);
         };

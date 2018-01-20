@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import ru.necessitudo.app.vk_alternative.model.CommentItem;
 import ru.necessitudo.app.vk_alternative.model.Owner;
 import ru.necessitudo.app.vk_alternative.model.WallItem;
 import ru.necessitudo.app.vk_alternative.model.attachment.ApiAttachment;
@@ -18,7 +19,7 @@ import ru.necessitudo.app.vk_alternative.model.view.attachment.LinkAttachmentVie
 import ru.necessitudo.app.vk_alternative.model.view.attachment.LinkExternalViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.attachment.PageAttachmentViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.attachment.VideoAttachmentViewModel;
-import ru.necessitudo.app.vk_alternative.rest.model.response.ItemsWIthSendersResponse;
+import ru.necessitudo.app.vk_alternative.rest.model.response.ItemsWithSendersResponse;
 
 /**
  * Created by olegdubrovin on 20/12/17.
@@ -26,7 +27,7 @@ import ru.necessitudo.app.vk_alternative.rest.model.response.ItemsWIthSendersRes
 
 public class VkListHelper {
 
-    public static List<WallItem> getWallList(ItemsWIthSendersResponse<WallItem> responce){
+    public static List<WallItem> getWallList(ItemsWithSendersResponse<WallItem> responce){
         List<WallItem> wallItems = responce.items;
 
         for (WallItem wallItem:wallItems){
@@ -97,4 +98,21 @@ public class VkListHelper {
         }
         return attachmentVhItems;
     }
+
+    public static List<CommentItem> getCommentsList(ItemsWithSendersResponse<CommentItem> response, boolean isFromTopic) {
+        List<CommentItem> commentItems = response.items;
+
+        for (CommentItem commentItem : commentItems) {
+            Owner sender = response.getSender(commentItem.getFromId());
+            commentItem.setSenderName(sender.getFullName());
+            commentItem.setSenderPhoto(sender.getPhoto());
+
+            commentItem.setIsFromTopic(isFromTopic);
+
+            commentItem.setAttachmentsString(Utils
+                    .convertAttachmentsToFontIcons(commentItem.getAttachments()));
+        }
+        return commentItems;
+    }
+
 }

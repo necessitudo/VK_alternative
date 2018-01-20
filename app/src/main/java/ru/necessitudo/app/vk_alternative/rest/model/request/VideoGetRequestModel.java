@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 15/01/18.
@@ -12,7 +12,7 @@ import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 
 public class VideoGetRequestModel  extends  BaseRequestModel{
 
-    @SerializedName(ApiConsts.VIDEOS)
+    @SerializedName(ApiConstants.VIDEOS)
     String videos;
 
 
@@ -42,7 +42,7 @@ public class VideoGetRequestModel  extends  BaseRequestModel{
 
     @Override
     public void onMapCreate(Map<String, String> map) {
-        map.put(ApiConsts.VIDEOS, getVideos());
+        map.put(ApiConstants.VIDEOS, getVideos());
 
     }
 }

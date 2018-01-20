@@ -5,7 +5,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 30/12/17.
@@ -17,7 +17,7 @@ public class UsersGetRequestModel extends  BaseRequestModel{
     String userId;
 
     @SerializedName(VKApiConst.FIELDS)
-    String fields = ApiConsts.DEFAULT_USER_FIELDS;
+    String fields = ApiConstants.DEFAULT_USER_FIELDS;
 
     public UsersGetRequestModel(String userId){
         this.userId = userId;

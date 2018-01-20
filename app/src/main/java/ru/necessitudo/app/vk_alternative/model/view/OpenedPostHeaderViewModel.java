@@ -10,6 +10,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.common.utils.UiHelper;
+import ru.necessitudo.app.vk_alternative.model.CommentItem;
 import ru.necessitudo.app.vk_alternative.model.WallItem;
 import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
@@ -51,6 +52,15 @@ public class OpenedPostHeaderViewModel extends BaseViewModel {
 
     public int getId() {
         return mId;
+    }
+
+    public OpenedPostHeaderViewModel(CommentItem commentItem) {
+        this.mId = commentItem.getId();
+
+        this.mProfileName = commentItem.getSenderName();
+        this.mProfilePhoto = commentItem.getSenderPhoto();
+
+        this.mText = commentItem.getDisplayText();
     }
 
     private String getProfileName() {

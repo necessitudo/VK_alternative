@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 11/01/18.
@@ -12,10 +12,10 @@ import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
 
 public class WallGetByIdRequestModel extends BaseRequestModel{
 
-    @SerializedName(ApiConsts.POSTS)
+    @SerializedName(ApiConstants.POSTS)
     private String posts;
 
-    @SerializedName(ApiConsts.EXTENDED)
+    @SerializedName(ApiConstants.EXTENDED)
     private int extended=1;
 
     public String getPosts() {
@@ -39,8 +39,8 @@ public class WallGetByIdRequestModel extends BaseRequestModel{
     }
     @Override
     public void onMapCreate(Map<String, String> map) {
-        map.put(ApiConsts.POSTS, getPosts());
-        map.put(ApiConsts.EXTENDED, String.valueOf(getExtended()));
+        map.put(ApiConstants.POSTS, getPosts());
+        map.put(ApiConstants.EXTENDED, String.valueOf(getExtended()));
 
     }
 }

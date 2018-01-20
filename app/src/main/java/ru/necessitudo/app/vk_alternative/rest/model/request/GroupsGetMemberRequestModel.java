@@ -5,7 +5,7 @@ import com.vk.sdk.api.VKApiConst;
 
 import java.util.Map;
 
-import ru.necessitudo.app.vk_alternative.consts.ApiConsts;
+import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 
 /**
  * Created by olegdubrovin on 31/12/17.
@@ -17,13 +17,13 @@ public class GroupsGetMemberRequestModel extends BaseRequestModel {
     int groupId;
 
     @SerializedName(VKApiConst.COUNT)
-    int count = ApiConsts.DEFAULT_COUNT;
+    int count = ApiConstants.DEFAULT_COUNT;
 
     @SerializedName(VKApiConst.OFFSET)
     int offset;
 
     @SerializedName(VKApiConst.FIELDS)
-    String fileds = ApiConsts.DEFAULT_MEMBER_FIELDS;
+    String fileds = ApiConstants.DEFAULT_MEMBER_FIELDS;
 
     public GroupsGetMemberRequestModel(int groupId, int count, int offset) {
         this.groupId = Math.abs(groupId);
