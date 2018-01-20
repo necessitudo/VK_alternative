@@ -3,10 +3,17 @@ package ru.necessitudo.app.vk_alternative.model.view;
 import android.view.View;
 import android.widget.TextView;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
+import ru.necessitudo.app.vk_alternative.common.manager.MyFragmentManager;
+import ru.necessitudo.app.vk_alternative.model.Place;
 import ru.necessitudo.app.vk_alternative.model.Topic;
+import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
+import ru.necessitudo.app.vk_alternative.ui.fragment.TopicCommentsFragment;
 import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
@@ -83,16 +90,31 @@ public class TopicViewModel extends BaseViewModel {
         @BindView(R.id.tv_comments_count)
         public TextView tvCommentsCount;
 
+        @Inject
+        MyFragmentManager mFragmentManager;
+
 
         public TopicViewHolder(View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
+
+            MyApplication.getApplicationComponent().inject(this);
+
         }
 
         @Override
         public void bindViewHolder(TopicViewModel model) {
             tvTitle.setText(model.getmTitle());
             tvCommentsCount.setText(model.getmCommentsCount());
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    mFragmentManager.addFragment((BaseActivity) view.getContext(),
+                            TopicCommentsFragment.newInstance(new Place(String.valueOf(model.getmGroupId()), String.valueOf(model.getmId()))),
+                            R.id.main_wraper);
+                }
+            });
         }
 
         @Override

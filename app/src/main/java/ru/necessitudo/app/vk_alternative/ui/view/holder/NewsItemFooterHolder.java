@@ -10,15 +10,26 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.reactivex.Observable;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
+import io.realm.Realm;
+import io.realm.RealmObject;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.common.manager.MyFragmentManager;
 import ru.necessitudo.app.vk_alternative.common.utils.Utils;
+import ru.necessitudo.app.vk_alternative.common.utils.VkListHelper;
 import ru.necessitudo.app.vk_alternative.model.Place;
+import ru.necessitudo.app.vk_alternative.model.WallItem;
+import ru.necessitudo.app.vk_alternative.model.countable.Likes;
 import ru.necessitudo.app.vk_alternative.model.view.NewsItemFooterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.CommentCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.LikeCounterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.counter.RepostCounterViewModel;
+import ru.necessitudo.app.vk_alternative.rest.api.LikeEventOnSubscribe;
+import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
+import ru.necessitudo.app.vk_alternative.rest.model.request.WallGetByIdRequestModel;
 import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.ui.fragment.CommentsFragment;
 
@@ -54,6 +65,15 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
 
     @BindView(R.id.rl_comments)
     public View rlComments;
+
+    @BindView(R.id.rl_likes)
+    public View rlLikes;
+
+    @Inject
+    WallApi mWallApi;
+
+
+    public static final String POST = "post";
 
     @Inject
     MyFragmentManager mFragmentManager;
@@ -94,6 +114,15 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
             }
         });
 
+        rlLikes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+                like(item);
+            }
+        });
+
     }
 
     private void bindLikes(LikeCounterViewModel likes){
@@ -124,5 +153,45 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
         tvCommentsCount.setText(null);
         tvRepostsCount.setText(null);
 
+    }
+
+    public void saveToDb(RealmObject item) {
+        Realm realm = Realm.getDefaultInstance();
+        realm.executeTransaction(realm1 -> realm1.copyToRealmOrUpdate(item));
+    }
+
+    public Observable<LikeCounterViewModel> likeObservable(int ownerId, int postId, Likes likes) {
+        return Observable.create(new LikeEventOnSubscribe(likes, POST, ownerId, postId ))
+
+                .observeOn(Schedulers.io())
+                .flatMap(count -> {
+
+                    return mWallApi.getById(new WallGetByIdRequestModel(ownerId, postId).toMap());
+                })
+                .flatMap(full -> Observable.fromIterable(VkListHelper.getWallList(full.response)))
+                .doOnNext(this::saveToDb)
+                .map(wallItem -> new LikeCounterViewModel(wallItem.getLikes()));
+    }
+
+    public void like(NewsItemFooterViewModel item) {
+        WallItem wallItem = getWallItemFromRealm(item.getId());
+        likeObservable(wallItem.getOwnerId(), wallItem.getId(), wallItem.getLikes())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(likes -> {
+                    item.setLikes(likes);
+                    bindLikes(likes);
+                }, error -> {
+                    error.printStackTrace();
+                });
+    }
+
+    public WallItem getWallItemFromRealm(int postId) {
+        Realm realm = Realm.getDefaultInstance();
+        WallItem wallItem = realm.where(WallItem.class)
+                .equalTo("id", postId)
+                .findFirst();
+
+        return realm.copyFromRealm(wallItem);
     }
 }
