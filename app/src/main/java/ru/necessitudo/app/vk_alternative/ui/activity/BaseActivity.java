@@ -2,7 +2,7 @@ package ru.necessitudo.app.vk_alternative.ui.activity;
 
 import android.os.Bundle;
 import android.support.annotation.LayoutRes;
-
+import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.Toolbar;
 import android.widget.FrameLayout;
 import android.widget.ProgressBar;
@@ -30,11 +30,15 @@ public abstract  class BaseActivity extends MvpAppCompatActivity{
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    @BindView(R.id.fab)
+    public FloatingActionButton mFab;
+
     @Inject
     MyFragmentManager myFragmentManager;
 
     public void fragmentOnScreen(BaseFragment fragment){
         setToolbarTitle(fragment.createToolbarTitle(this));
+        setupFabVisibility(fragment.needFab());
 
     }
 
@@ -56,7 +60,7 @@ public abstract  class BaseActivity extends MvpAppCompatActivity{
 
         setSupportActionBar(toolbar);
 
-        FrameLayout parent = (FrameLayout) findViewById(R.id.main_wraper);
+        FrameLayout parent = (FrameLayout) findViewById(R.id.main_wrapper);
 
         getLayoutInflater().inflate(getMainContentLayout(), parent);
 
@@ -73,13 +77,13 @@ public abstract  class BaseActivity extends MvpAppCompatActivity{
 
     public  void setContent(BaseFragment fragment){
 
-        myFragmentManager.setFragment(this, fragment, R.id.main_wraper);
+        myFragmentManager.setFragment(this, fragment, R.id.main_wrapper);
 
     }
 
     public  void addContent(BaseFragment fragment){
 
-        myFragmentManager.addFragment(this, fragment, R.id.main_wraper);
+        myFragmentManager.addFragment(this, fragment, R.id.main_wrapper);
 
     }
 
@@ -101,4 +105,16 @@ public abstract  class BaseActivity extends MvpAppCompatActivity{
 
         removeCurrentFragment();
     }
+
+    public void setupFabVisibility(boolean needFab) {
+        if (mFab == null) return;
+
+        if (needFab) {
+            mFab.show();
+        } else {
+            mFab.hide();
+        }
+    }
+
+
 }

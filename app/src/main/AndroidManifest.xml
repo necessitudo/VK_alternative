@@ -27,6 +27,10 @@
             android:label="ServiceActivity"
             android:theme="@style/VK.Transparent"/>
 
+        <activity
+            android:name="ru.necessitudo.app.vk_alternative.ui.activity.CreatePostActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"/>
+
     </application>
 
 </manifest>

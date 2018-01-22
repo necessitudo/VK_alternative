@@ -1,9 +1,11 @@
 package ru.necessitudo.app.vk_alternative.ui.fragment;
 
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.view.View;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 
@@ -14,6 +16,7 @@ import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.BaseFeedPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.NewsFeedPresenter;
 import ru.necessitudo.app.vk_alternative.rest.api.WallApi;
+import ru.necessitudo.app.vk_alternative.ui.activity.CreatePostActivity;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -55,4 +58,21 @@ public class NewsFeedFragment extends BaseFeedFragment {
     }
 
 
+    @Override
+    public boolean needFab() {
+        return true;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getBaseActivity().mFab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(getActivity(), CreatePostActivity.class);
+                startActivityForResult(intent, 0);
+            }
+        });
+    }
 }

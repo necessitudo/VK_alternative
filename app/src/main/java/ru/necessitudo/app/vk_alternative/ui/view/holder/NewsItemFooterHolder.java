@@ -110,7 +110,7 @@ public class NewsItemFooterHolder extends BaseViewHolder<NewsItemFooterViewModel
             public void onClick(View view) {
                 mFragmentManager.addFragment((BaseActivity) view.getContext(),
                         CommentsFragment.newInstance(new Place(String.valueOf(item.getOwnerId()), String.valueOf(item.getId()))),
-                        R.id.main_wraper);
+                        R.id.main_wrapper);
             }
         });
 

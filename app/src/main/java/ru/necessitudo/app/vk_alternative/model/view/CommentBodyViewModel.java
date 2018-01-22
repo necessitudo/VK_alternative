@@ -89,7 +89,7 @@ public class CommentBodyViewModel extends BaseViewModel {
                 @Override
                 public void onClick(View view) {
                     mFragmentManager.addFragment((BaseActivity) itemView.getContext(),
-                            OpenedCommentFragment.newInstance(commentBodyViewModel.getId()), R.id.main_wraper);
+                            OpenedCommentFragment.newInstance(commentBodyViewModel.getId()), R.id.main_wrapper);
                 }
             });
 

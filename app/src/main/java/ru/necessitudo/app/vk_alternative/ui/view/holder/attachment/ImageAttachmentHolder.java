@@ -47,7 +47,7 @@ public class ImageAttachmentHolder extends BaseViewHolder<ImageAttachmentViewMod
                 @Override
                 public void onClick(View view) {
                     mFragmentManager.addFragment((BaseActivity) itemView.getContext(),
-                            ImageFragment.newInstance(imageAttachmentViewModel.getPhotoUrl()), R.id.main_wraper);
+                            ImageFragment.newInstance(imageAttachmentViewModel.getPhotoUrl()), R.id.main_wrapper);
                 }
             });
         }

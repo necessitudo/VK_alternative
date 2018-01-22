@@ -57,7 +57,7 @@ public class NewsItemBodyHolder extends  BaseViewHolder<NewsItemBodyViewModel>{
             public void onClick(View view) {
                 myFragmentManager.addFragment((BaseActivity) view.getContext(),
                         OpenedPostFragment.newInstance(item.getId()),
-                        R.id.main_wraper);
+                        R.id.main_wrapper);
 
             }
         });

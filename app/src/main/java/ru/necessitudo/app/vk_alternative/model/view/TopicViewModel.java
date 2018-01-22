@@ -112,7 +112,7 @@ public class TopicViewModel extends BaseViewModel {
                 public void onClick(View view) {
                     mFragmentManager.addFragment((BaseActivity) view.getContext(),
                             TopicCommentsFragment.newInstance(new Place(String.valueOf(model.getmGroupId()), String.valueOf(model.getmId()))),
-                            R.id.main_wraper);
+                            R.id.main_wrapper);
                 }
             });
         }
