@@ -19,4 +19,6 @@ public interface MainView extends MvpView {
 
     void showFragmentFromDrawer(BaseFragment baseFragment);
 
+    void startActivityFromDrawer(Class<?> act);
+
 }

@@ -2,6 +2,9 @@ package ru.necessitudo.app.vk_alternative.consts;
 
 import com.vk.sdk.VKScope;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 /**
  * Created by olegdubrovin on 04/12/17.
  */
@@ -31,5 +34,22 @@ public class ApiConstants {
 
     public static final String GROUP_ID = "group_id";
     public static final String TOPIC_ID = "topic_id";
+
+    public static final String TOKEN = "token";
+    public static final String SYSTEM_VERSION = "system_version";
+    public static final String DEVICE_MODEL = "device_model";
+    public static final String DEVICE_ID = "device_id";
+    public static final String SETTINGS = "settings";
+
+    public static JSONObject getDefaultPushSettings() {
+        try {
+            return new JSONObject("{\"comment\":\"on\", \"reply\":\"on\", \"new_post\":\"on\"}");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        return null;
+    }
+
 
 }

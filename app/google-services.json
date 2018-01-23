@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "244978198805",
+    "firebase_url": "https://vkclient-33350.firebaseio.com",
+    "project_id": "vkclient-33350",
+    "storage_bucket": "vkclient-33350.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:244978198805:android:7f056197ce3600c0",
+        "android_client_info": {
+          "package_name": "ru.necessitudo.app.vk_alternative"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "244978198805-1kge1eq0j745ho8b1bc6uiprbikle8gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0D-hXwef0CEeETDP8IC7uM4aUmtm6MV0"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

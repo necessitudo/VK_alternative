@@ -2,6 +2,7 @@ package ru.necessitudo.app.vk_alternative.ui.activity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.provider.Settings;
 
 import com.arellomobile.mvp.presenter.InjectPresenter;
 import com.mikepenz.google_material_typeface_library.GoogleMaterial;
@@ -21,12 +22,18 @@ import com.vk.sdk.api.VKError;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import ru.necessitudo.app.vk_alternative.MyApplication;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.consts.ApiConstants;
 import ru.necessitudo.app.vk_alternative.model.Profile;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.view.MainView;
+import ru.necessitudo.app.vk_alternative.rest.api.AccountApi;
+import ru.necessitudo.app.vk_alternative.rest.model.request.AccountRegisterDeviceRequest;
 import ru.necessitudo.app.vk_alternative.ui.fragment.BaseFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
 
@@ -39,6 +46,9 @@ public class MainActivity extends BaseActivity implements MainView {
 
     private AccountHeader mAccountHeader;
 
+    @Inject
+    AccountApi mAccountApi;
+
 
     @Override
     protected int getMainContentLayout() {
@@ -50,6 +60,12 @@ public class MainActivity extends BaseActivity implements MainView {
         super.onCreate(savedInstanceState);
 
         MyApplication.getApplicationComponent().inject(this);
+
+        mAccountApi.registerDevice(new AccountRegisterDeviceRequest(Settings.Secure.getString(getContentResolver(), Settings.Secure.ANDROID_ID)).toMap())
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe();
+
 
        mPresenter.checkAuth();
     }
@@ -160,6 +176,11 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void showFragmentFromDrawer(BaseFragment baseFragment) {
         setContent(baseFragment);
+
+    }
+
+    @Override
+    public void startActivityFromDrawer(Class<?> act) {
 
     }
 }

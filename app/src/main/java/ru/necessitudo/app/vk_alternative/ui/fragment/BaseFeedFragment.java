@@ -1,11 +1,14 @@
 package ru.necessitudo.app.vk_alternative.ui.fragment;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SimpleItemAnimator;
 import android.view.View;
+import android.view.animation.AnimationUtils;
+import android.view.animation.LayoutAnimationController;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -59,11 +62,26 @@ public abstract class BaseFeedFragment extends BaseFragment implements BaseFeedV
         setUpRecyclerView(view);
         setUpAdapter(mRecyclerView);
 
+        int resId = R.anim.layout_animation_fall_down;
+        LayoutAnimationController animation = AnimationUtils.loadLayoutAnimation(mRecyclerView.getContext(), resId);
+        mRecyclerView.setLayoutAnimation(animation);
+
+       // runLayoutAnimation(mRecyclerView);
+
         mBaseFeedPresenter = onCreateFeedPresenter();
         mBaseFeedPresenter.loadStart();
 
     }
 
+    private void runLayoutAnimation(final RecyclerView recyclerView) {
+        final Context context = recyclerView.getContext();
+        final LayoutAnimationController controller =
+                AnimationUtils.loadLayoutAnimation(context, R.anim.layout_animation_fall_down);
+
+        recyclerView.setLayoutAnimation(controller);
+        recyclerView.getAdapter().notifyDataSetChanged();
+        recyclerView.scheduleLayoutAnimation();
+    }
 
     @Override
     protected int getMainContentLayout() {
