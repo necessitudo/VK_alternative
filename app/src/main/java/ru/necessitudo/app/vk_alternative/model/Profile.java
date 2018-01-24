@@ -52,6 +52,16 @@ public class Profile extends RealmObject implements Owner {
     private int hidden;
 
 
+    private boolean isContact;
+
+    public boolean isContact() {
+        return isContact;
+    }
+
+    public void setContact(boolean contact) {
+        isContact = contact;
+    }
+
     public String getFirstName() {
         return firstName;
     }

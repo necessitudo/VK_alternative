@@ -182,5 +182,7 @@ public class MainActivity extends BaseActivity implements MainView {
     @Override
     public void startActivityFromDrawer(Class<?> act) {
 
+        startActivity(new Intent(MainActivity.this, act));
+
     }
 }

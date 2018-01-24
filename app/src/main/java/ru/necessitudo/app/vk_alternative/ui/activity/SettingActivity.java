@@ -10,13 +10,13 @@ import ru.necessitudo.app.vk_alternative.ui.fragment.MyPreferencesFragment;
 /**
  * Created by olegdubrovin on 23/01/18.
  */
-
 public class SettingActivity extends BaseActivity {
 
     @Override
     protected int getMainContentLayout() {
         return R.layout.activity_setting;
     }
+
 
 
     @Override
@@ -63,3 +63,4 @@ public class SettingActivity extends BaseActivity {
         finish();
     }
 }
+

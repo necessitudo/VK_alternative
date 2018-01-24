@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import de.hdodenhof.circleimageview.CircleImageView;
 import ru.necessitudo.app.vk_alternative.R;
 import ru.necessitudo.app.vk_alternative.model.Member;
+import ru.necessitudo.app.vk_alternative.model.Profile;
 import ru.necessitudo.app.vk_alternative.ui.view.holder.BaseViewHolder;
 
 /**
@@ -35,6 +36,10 @@ public class MemberViewModel  extends BaseViewModel{
         this.mFullName = member.getFullName();
     }
 
+    public MemberViewModel (Profile profile) {
+        this.photo = profile.getPhoto();
+        this.mFullName = profile.getFullName();
+    }
     private String mFullName;
 
     @Override

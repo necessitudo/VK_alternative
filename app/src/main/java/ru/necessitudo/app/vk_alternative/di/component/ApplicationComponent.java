@@ -12,6 +12,8 @@ import ru.necessitudo.app.vk_alternative.model.view.CommentFooterViewModel;
 import ru.necessitudo.app.vk_alternative.model.view.TopicViewModel;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.BoardPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.CommentsPresenter;
+import ru.necessitudo.app.vk_alternative.mvp.presenter.InfoContactsPresenter;
+import ru.necessitudo.app.vk_alternative.mvp.presenter.InfoLinksPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.InfoPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MainPresenter;
 import ru.necessitudo.app.vk_alternative.mvp.presenter.MembersPresenter;
@@ -22,6 +24,8 @@ import ru.necessitudo.app.vk_alternative.mvp.presenter.TopicCommentsPresenter;
 import ru.necessitudo.app.vk_alternative.ui.activity.BaseActivity;
 import ru.necessitudo.app.vk_alternative.ui.activity.MainActivity;
 import ru.necessitudo.app.vk_alternative.ui.fragment.CommentsFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.InfoContactsFragment;
+import ru.necessitudo.app.vk_alternative.ui.fragment.InfoLinksFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.NewsFeedFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.OpenedCommentFragment;
 import ru.necessitudo.app.vk_alternative.ui.fragment.OpenedPostFragment;
@@ -86,5 +90,11 @@ public interface ApplicationComponent {
     void inject(CommentFooterViewModel.CommentFooterHolder holder);
 
     void inject(TopicViewModel.TopicViewHolder holder);
+
+    void inject(InfoContactsPresenter presenter);
+    void inject(InfoLinksPresenter presenter);
+
+    void inject(InfoContactsFragment fragment);
+    void inject(InfoLinksFragment fragment);
 
 }
