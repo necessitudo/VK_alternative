@@ -12,20 +12,23 @@ android {
         applicationId "ru.necessitudo.app.vk_alternative"
         minSdkVersion 15
         targetSdkVersion 26
-        versionCode 5
-        versionName '1.5'
+        versionCode 6
+        versionName '1.6'
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
         release {
-            minifyEnabled false
+            debuggable false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
         debug {
-            minifyEnabled false
+            debuggable true
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
-
     }
     compileOptions {
         targetCompatibility 1.8
